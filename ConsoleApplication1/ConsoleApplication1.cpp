@@ -430,8 +430,7 @@ public:
 		order - хранит информацию о текущем порядке матрицы сильн. связн.
 		с учетом вычеркиваний*/
 
-
-		
+		// Основной цикл, формирующий КСС
 
 		while (order > 0)
 		{
@@ -465,19 +464,33 @@ public:
 						v[count] = i;
 					}
 				}
+				// дополнительный массив
+				int* KSS;
+				KSS = new int[count + 1];
 
+				std::cout << "\nКомпонента №" << P + 1 << " \n";
 				std::cout << "\nВершины: ";
+
+				
+
 				// процедура вычеркивания строк и столбцов
 				for(int i = count; i >= 0; i--)
 				{
 					Result = Result.reduceOrderBM(v[i]);
-					std::cout << V[v[i]] << "\t";
+					
+					KSS[i] = V[v[i]];
 					Verase(v[i]);
+				}
 
+
+				// инверсивная печать
+				for (int i = 0; i <= count; i++)
+				{
+					std::cout << KSS[i] << "\t";
 				}
 				
-				std::cout << "\nZ" << P + 1 << "(D) = \n";
-				Result.print();
+				
+				
 				std::cout << "\n";
 				
 				
